@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation"
 
 export interface ContextoAutenticacaoProps {
 	usuario: Partial<Usuario> | null
+	cadastrar: (usuario: Partial<Usuario>) => Promise<void>
 	login: (email: string, senha: string) => Promise<void>
 	logout: () => void
 }
@@ -14,6 +15,11 @@ const ContextoAutenticacao = createContext<ContextoAutenticacaoProps>({} as any)
 export function ProvedoraAutenticacao(props: any) {
 	const [usuario, setUsuario] = useState<Partial<Usuario | null>>(null)
 	const router = useRouter()
+
+	async function cadastrar(usuario: Partial<Usuario>) {
+		alert("Cadastro realizado com sucesso!")
+		console.log(usuario)
+	}
 
 	async function login(email: string, senha: string) {
 		// Chama a API via backend
@@ -35,6 +41,7 @@ export function ProvedoraAutenticacao(props: any) {
 		<ContextoAutenticacao.Provider
 			value={{
 				usuario,
+				cadastrar,
 				login,
 				logout,
 			}}
