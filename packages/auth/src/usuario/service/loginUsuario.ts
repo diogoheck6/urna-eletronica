@@ -1,7 +1,7 @@
 import { usuarios } from "../../constants/usuarios"
 import Usuario from "../model/Usuario"
 
-export default function loginUsuario(email: string, senha: string): Usuario {
+export default function loginUsuario(email: string, senha: string): Usuario | never {
 	const usuario = usuarios.find((usuario) => usuario.email === email)
 
 	if (!usuario) {
@@ -12,5 +12,5 @@ export default function loginUsuario(email: string, senha: string): Usuario {
 		throw new Error("Senha inválida.")
 	}
 
-	return usuario
+	return { ...usuario, senha: undefined }
 }

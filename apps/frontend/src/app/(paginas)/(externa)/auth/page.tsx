@@ -1,9 +1,14 @@
 "use client"
 import ContextoAutenticacao from "@/data/contexts/ContextoAutenticacao"
-import { useContext } from "react"
+import { log } from "console"
+import { useContext, useState } from "react"
 
 export default function TelaLogin() {
-	const { usuario } = useContext(ContextoAutenticacao)
+	const { login } = useContext(ContextoAutenticacao)
+
+	const [email, setEmail] = useState("")
+	const [senha, setSenha] = useState("")
+
 	return (
 		<div className="flex flex-col justify-center items-center gap-6 h-screen">
 			<h1 className="text-3xl font-bold">Seja Bem Vindo(a)</h1>
@@ -12,21 +17,23 @@ export default function TelaLogin() {
 					<span>E-mail</span>
 					<input
 						type="text"
-						value={usuario.email ?? ""}
+						value={email}
 						className="input"
-						onChange={(e) => {}}
+						onChange={(e) => setEmail(e.target.value)}
 					/>
 				</div>
 				<div className="flex flex-col gap-1">
 					<span>Senha</span>
 					<input
 						type="password"
-						value={usuario.senha ?? ""}
+						value={senha}
 						className="input"
-						onChange={(e) => {}}
+						onChange={(e) => setSenha(e.target.value)}
 					/>
 				</div>
-				<button className="botao azul">Entrar</button>
+				<button className="botao azul" onClick={() => login(email, senha)}>
+					Entrar
+				</button>
 			</div>
 		</div>
 	)

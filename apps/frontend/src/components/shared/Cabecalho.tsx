@@ -4,7 +4,7 @@ import ContextoAutenticacao from "@/data/contexts/ContextoAutenticacao"
 import Link from "next/link"
 
 export default function Cabecalho() {
-	const { usuario } = useContext(ContextoAutenticacao)
+	const { usuario, logout } = useContext(ContextoAutenticacao)
 
 	return (
 		<header className="flex justify-between items-center h-24 bg-zinc-900">
@@ -18,9 +18,16 @@ export default function Cabecalho() {
 							<Link href="/eleitor">Eleitor</Link>
 						</>
 					)}
-					<Link href="/auth" className="botao azul">
-						Login
-					</Link>
+
+					{usuario === null ? (
+						<Link href="/auth" className="botao azul">
+							Login
+						</Link>
+					) : (
+						<button onClick={logout} className="botao vermelho">
+							Sair
+						</button>
+					)}
 				</nav>
 			</div>
 		</header>
