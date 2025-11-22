@@ -1,3 +1,4 @@
+"use client"
 import { ProvedoraAutenticacao } from "@/data/contexts/ContextoAutenticacao"
 
 export default function Layout(props: any) {
