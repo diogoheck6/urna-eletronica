@@ -1,5 +1,5 @@
 {
-	"name": "@urna/auth",
+	"name": "@urna/shared",
 	"version": "1.0.0",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
@@ -12,9 +12,6 @@
 	"author": "",
 	"license": "ISC",
 	"description": "",
-	"dependencies": {
-		"@urna/shared": "*"
-	},
 	"devDependencies": {
 		"tsup": "^8.3.5"
 	}

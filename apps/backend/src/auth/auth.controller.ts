@@ -1,19 +1,18 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { loginUsuario, registrarUsuario, Usuario } from '@urna/auth';
+import { UsuarioPrisma } from './usuario.prisma';
 import * as jwt from 'jsonwebtoken';
 import BcryptProvider from './bcrypt.provider';
-import RepositorioUsuarioArray from './usuario-array-repository';
 
 @Controller('auth')
 export class AuthController {
   constructor(
-    private repo: RepositorioUsuarioArray,
+    private repo: UsuarioPrisma,
     private cripto: BcryptProvider,
   ) {}
 
   @Post('login')
   async login(@Body() usuarioInformado: Partial<Usuario>) {
-    console.log('AuthController login', usuarioInformado);
     const usuario = await loginUsuario({
       repo: this.repo,
       cripto: this.cripto,

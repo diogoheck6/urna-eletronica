@@ -1,5 +1,5 @@
 {
-	"name": "@urna/core",
+	"name": "@urna/votacao",
 	"version": "1.0.0",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
@@ -7,6 +7,9 @@
 		"build": "tsup src/index.ts --dts --minify",
 		"build:packages": "tsup src/index.ts --dts --minify",
 		"dev": "tsup src/index.ts --dts --watch"
+	},
+	"dependencies": {
+		"@urna/shared": "*"
 	},
 	"keywords": [],
 	"author": "",

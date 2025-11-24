@@ -21,9 +21,7 @@ export function ProvedoraAutenticacao(props: any) {
 
 	async function cadastrar(usuario: Partial<Usuario>) {
 		const resultado = await httpGet("")
-		console.log(resultado)
 		alert(resultado)
-		console.log(usuario)
 	}
 
 	async function login(email: string, senha: string) {

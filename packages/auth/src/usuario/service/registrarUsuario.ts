@@ -1,6 +1,7 @@
 import ProvedorSenhaCriptografada from "../interface/ProvedorSenhaCriptografada"
 import RepositorioUsuario from "../interface/RepositorioUsuario"
 import Usuario from "../model/Usuario"
+import { ErroValidacao } from "@urna/shared"
 
 export default async function registrarUsuario(props: {
 	repo: RepositorioUsuario
@@ -10,9 +11,8 @@ export default async function registrarUsuario(props: {
 	const { repo, usuario, cripto } = props
 
 	const usuarioExistente = await repo.buscarPorEmail(usuario.email)
-	if (usuarioExistente) throw new Error("Usuário já existe.")
+	if (usuarioExistente) throw new ErroValidacao("Usuário já Existe")
 
 	const senhaCriptografada = await cripto.criptografar(usuario.senha!)
-	console.log(senhaCriptografada)
 	await repo.salvar({ ...usuario, senha: senhaCriptografada } as Usuario)
 }

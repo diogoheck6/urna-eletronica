@@ -20,5 +20,3 @@ Content-Type: application/json
 }
 
 
-###
-GET  http://localhost:4000/auth/usuario/1

@@ -1,3 +1,4 @@
+import { ErroValidacao } from "@urna/shared"
 import { ProvedorSenhaCriptografada } from "../../../dist"
 import RepositorioUsuario from "../interface/RepositorioUsuario"
 import Usuario from "../model/Usuario"
@@ -12,11 +13,11 @@ export default async function loginUsuario(props: {
 	const usuario = await repo.buscarPorEmail(email)
 
 	if (!usuario) {
-		throw new Error("Usuário não encontrado.")
+		throw new ErroValidacao("Usuário não encontrado.")
 	}
 
 	const senhaCorreta = await cripto.comparar(senha, usuario.senha!)
-	if (!senhaCorreta) throw new Error("Senha incorreta.")
+	if (!senhaCorreta) throw new ErroValidacao("Senha incorreta.")
 
 	return { ...usuario, senha: undefined }
 }
